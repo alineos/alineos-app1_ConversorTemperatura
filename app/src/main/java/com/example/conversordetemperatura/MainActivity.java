@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText valueEditText;
     private Button converterCelsiusButton;
+
+    private Button converterFahrenheitButton;
     private TextView convertedValueTextView;
 
     @Override
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         converterCelsiusButton = findViewById(R.id.button_converter_Celsius);
         converterCelsiusButton.setOnClickListener(this);
 
+        converterFahrenheitButton = findViewById(R.id.button_converter_Fahrenheit);
+        converterFahrenheitButton.setOnClickListener(this);
+
 
     }
 
@@ -33,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view == converterCelsiusButton){
             getFahrenheitConvertion();
+        }
+        if (view == converterFahrenheitButton){
+            getCelsiusConvertion();
         }
     }
 
@@ -57,5 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value = (value-32)/1.8;
 
         convertedValueTextView.setText(String.format("%.2f °C", value));
+    }
+
+    private void getCelsiusConvertion() {
+        double value = getValue();
+
+        value = 1.8 * value + 32;
+
+        convertedValueTextView.setText(String.format("%.2f °F", value));
     }
 }
